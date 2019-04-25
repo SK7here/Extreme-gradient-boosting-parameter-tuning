@@ -313,8 +313,6 @@ test_w2v = wordvec_df.iloc[31962:,:]
 # splitting Training dataset into training and validation set
 xtrain_w2v, xvalid_w2v, ytrain, yvalid = train_test_split(train_w2v, train['label'],random_state=11,test_size=0.3) 
 
-
-#WORD2VEC FEATURES - EXTREME GRADIENT BOOSTING model
 # Training the model with training set from Training dataset
 xgb_cl.fit(xtrain_w2v, ytrain)
 # prediction on the validation set from Training dataset
@@ -540,7 +538,7 @@ xgb_tuned_cl = xgb.train(
     )
 
 
-# prediction on the validation set from Training dataset
+# prediction on the validation set from Training dataset using fine tuned XGB Model 
 prediction = xgb_tuned_cl.predict(dvalid)
     #If probability for label 1 is over 0.3, it is taken as label 1
 prediction_int = (prediction)>=0.3
